@@ -10,6 +10,7 @@ const BUZZ = "Buzz"
 
 export function fizzBuzz(){
     const result = []
+
     for(let i=firstItem; i< firstItem + responseSize; i++){
         result.push(parser(i))
     }
