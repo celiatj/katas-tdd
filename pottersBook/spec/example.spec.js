@@ -1,18 +1,18 @@
 import {  pottersbook } from '../src/example.js'
 
-describe('potterbook', () => {
-    it('returns a number', () => {
+describe('Potterbook', () => {
+    it('returns the price for one book', () => {
         // Arrange
-        const expected_value = true
+        const expected_value = 8
 
         // Act
         const result = pottersbook([1])
 
         // Assert
-        expect(!isNaN(result)).toBe(expected_value)
+        expect(result).toBe(expected_value)
     })
 
-        it('returns a 15.2 for 2 diferents books', () => {
+        it('returns a the price whith 0.05 discount for 2 diferents books', () => {
             // Arrange
             const expected_value = 15.2
     
@@ -22,7 +22,7 @@ describe('potterbook', () => {
             // Assert
             expect(result).toBe(expected_value)
         })
-       it('returns a 21.6 for 3 diferents books', () => {
+       it('returns the price whith 0.10 discount for 3 diferents books', () => {
             // Arrange
             const expected_value = 21.6
     
@@ -32,8 +32,9 @@ describe('potterbook', () => {
             // Assert
             expect(result).toBe(expected_value)
         })
-        it('returns a 51.60 for 2 copias del 1º, 2 copias del 2º, 2 copias 3º, 1 copia 4º y 1 copia 5º', () => {
+        it('returns the price whith all discount for a shopping cart', () => {
             // Arrange
+            // 2 copias del 1º, 2 copias del 2º, 2 copias 3º, 1 copia 4º y 1 copia 5º
             const expected_value = 51.60
     
             // Act
