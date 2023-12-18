@@ -1,33 +1,54 @@
+const CARDINAL_POINTS = ["N", "W", "S", "E"]
 
-export function pottersbook(cesta){
-   
-    let result = calcular(cesta)
-    return result
+export class MarsRover {
+
+  constructor(landingPostion) {
+    this.x = landingPostion.x
+    this.y = landingPostion.y
+    this.orientation = landingPostion.orientation
+  }
+
+  whereIAm() {
+    return { x: this.x, y: this.y }
+  }
+
+  myOrientation() {
+    return this.orientation
+  }
+
+  command(actions) {
+    actions.forEach(action => {
+      if (action === "M") {
+        this.y += 1
+      }
+      if (action === "B") {
+        this.y -= 1
+      }
+      if (action === "L") {
+        this.turnLeft()
+      }
+      if (action === "R") {
+        this.turnRigth()
+      }
+    });
+  }
+
+  turnLeft() {
+    const indexCardinals = CARDINAL_POINTS.indexOf(this.orientation)
+
+    let newIndexCardinal = indexCardinals + 1
+    if (newIndexCardinal > 3) newIndexCardinal = 0
+
+    this.orientation = CARDINAL_POINTS[newIndexCardinal]
+  }
+  
+  turnRigth() {
+    const indexCardinals = CARDINAL_POINTS.indexOf(this.orientation)
+
+    let newIndexCardinal = indexCardinals - 1
+    if (newIndexCardinal < 0) newIndexCardinal = 3
+
+    this.orientation = CARDINAL_POINTS[newIndexCardinal]
+  }
 }
- function calcular(cesta){
-    const precio_unitario = 8
-    let precio=0;
-    const discountByBook = {
-      0: 0,
-      1: 0,
-      2: 0.05,
-      3:0.10,
-      4:0.20,
-      5:0.25
-    }
-    
-
-    while(cesta.length>0){
-        cesta = cesta.filter(elemento => elemento !== 0);
-
-        let librosDistintos=cesta.length
-        let descuento=discountByBook[librosDistintos]
-
-        precio+= librosDistintos*precio_unitario*(1-descuento)
-
-        cesta=cesta.map(function (x) {return x -1});
-    }
- return precio
- }
-
 

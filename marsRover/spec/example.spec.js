@@ -1,4 +1,4 @@
-import { pottersbook } from '../src/example.js'
+import { MarsRover } from '../src/example.js'
 
 describe('Mars Rover', () => {
     it('knows his position when lands', () => {
@@ -14,7 +14,11 @@ describe('Mars Rover', () => {
 
         // Assert
         expect(marsRover.whereIAm()).toEqual({ x: 6, y: 6 })
+
     })
+
+
+
 
     it('moves forward when receibe a M', () => {
         // Arrange
@@ -32,7 +36,7 @@ describe('Mars Rover', () => {
         expect(marsRover.whereIAm()).toEqual({ x: 6, y: 7 })
     })
 
-    it('moves forward when receibe a B', () => {
+    it('moves backward when receibe a B', () => {
         // Arrange
         const landingPostion = {
             x: 6,
@@ -63,33 +67,76 @@ describe('Mars Rover', () => {
         // Assert
         expect(marsRover.whereIAm()).toEqual({ x: 6, y: 8 })
     })
+
+    describe('Orientation', () => {
+
+        it('knows his orientation when lands', () => {
+            // Arrange
+            const landingPostion = {
+                x: 6,
+                y: 6,
+                orientation: "W"
+            }
+
+            // Act
+            const marsRover = new MarsRover(landingPostion)
+
+            // Assert
+            expect(marsRover.myOrientation()).toEqual("W")
+
+        })
+
+        it('rotates left when recives command L', () => {
+            // Arrange
+            const landingPostion = {
+                x: 6,
+                y: 6,
+                orientation: "N"
+            }
+            const marsRover = new MarsRover(landingPostion)
+
+            // Act
+            marsRover.command(["L", "L"])
+
+            // Assert
+            expect(marsRover.myOrientation()).toEqual("S")
+        })
+
+        it('rotates left when recives four command L', () => {
+            // Arrange
+            const landingPostion = {
+                x: 6,
+                y: 6,
+                orientation: "N"
+            }
+            const marsRover = new MarsRover(landingPostion)
+
+            // Act
+            marsRover.command(["L", "L", "L", "L"])
+
+            // Assert
+            expect(marsRover.myOrientation()).toEqual("N")
+        })
+        it('rotates rigth when recives command R', () => {
+            // Arrange
+            const landingPostion = {
+                x: 6,
+                y: 6,
+                orientation: "N"
+            }
+            const marsRover = new MarsRover(landingPostion)
+
+            // Act
+            marsRover.command(["R","R"])
+
+            // Assert
+            expect(marsRover.myOrientation()).toEqual("S")
+        })
+
+
+    })
+
 })
 
-
-class MarsRover {
-
-    constructor(landingPostion) {
-        this.x = landingPostion.x
-        this.y = landingPostion.y
-    }
-
-    whereIAm() {
-        return { x: this.x, y: this.y }
-
-    }
-    command(actions) {
-
-        actions.forEach(action => {
-            if (action === "M") {
-                this.y += 1
-            }
-            if (action === "B") {
-                this.y -= 1
-            }
-        });
-    }
-
-
-}
 
 
