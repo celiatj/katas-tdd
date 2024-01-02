@@ -133,6 +133,39 @@ describe('Mars Rover', () => {
             expect(marsRover.myOrientation()).toEqual("S")
         })
 
+        it('moves in the eje x when receibe a M', () => {
+            // Arrange
+            const landingPostion = {
+                x: 6,
+                y: 6,
+                orientation: "N"
+            }
+            const marsRover = new MarsRover(landingPostion)
+    
+            // Act
+            marsRover.command(["R","M"])
+    
+            // Assert
+            expect(marsRover.whereIAm()).toEqual({ x: 7, y: 6 })
+    
+        })
+
+        it('moves in the eje x e y when receibe a large comand', () => {
+            // Arrange
+            const landingPostion = {
+                x: 6,
+                y: 6,
+                orientation: "N"
+            }
+            const marsRover = new MarsRover(landingPostion)
+    
+            // Act
+            marsRover.command(["R","M","M","L","L","L","M"])
+    
+            // Assert
+            expect(marsRover.whereIAm()).toEqual({ x: 8, y: 5 })
+    
+        })
 
     })
 
