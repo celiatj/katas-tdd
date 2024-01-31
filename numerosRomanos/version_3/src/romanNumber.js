@@ -16,7 +16,7 @@ export function convertRomanNumber(number) {
     4: "IV",
     1: "I",
   };
-
+  console.time();
   let result = "";
 
   const keys = Object.keys(romanNumerals)
@@ -29,6 +29,6 @@ export function convertRomanNumber(number) {
       number -= key;
     }
   }
-
+  console.timeEnd();
   return result;
 }
