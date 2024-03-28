@@ -54,7 +54,7 @@ describe("Bowling", () => {
     // Arranges
     const bowlingGame3 = new BowlingGame
     const expectValue = 20;
-    const partidaUnos=[[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1]]
+    const partidaUnos=[[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1,0]]
     // Act
     const result = bowlingGame3.sumar(partidaUnos);
 
@@ -68,7 +68,7 @@ it("suma las partida con todo scope ", () => {
     // Arranges
     const bowlingGame6 = new BowlingGame
     const expectValue = 200;// la ultima partida no cuenta el doble*
-    const partidaScope=[[5,5],[9,1],[9,1],[9,1],[9,1],[9,1],[9,1],[9,1],[9,1],[9,1]]
+    const partidaScope=[[5,5],[9,1],[9,1],[9,1],[9,1],[9,1],[9,1],[9,1],[9,1],[9,1,0]]
     // Act
     const result = bowlingGame6.sumar(partidaScope);
 
@@ -82,7 +82,7 @@ it("suma las partida con todo scope ", () => {
     // Arranges
     const bowlingGame8 = new BowlingGame
     const expectValue = 43;
-    const partidaStrike=[[10,0],[1,0],[1,0],[10,0],[1,0],[1,0],[10,0],[1,0],[1,0],[1,0]]
+    const partidaStrike=[[10,0],[1,0],[1,0],[10,0],[1,0],[1,0],[10,0],[1,0],[1,0],[1,0,0]]
     // Act
     const result = bowlingGame8.sumar(partidaStrike);
 
@@ -96,7 +96,7 @@ it("suma las partida con todo scope ", () => {
     // Arranges
     const bowlingGame9 = new BowlingGame
     const expectValue = 300;
-    const partidaStrike=[[10,0],[10,0],[10,0],[10,0],[10,0],[10,0],[10,0],[10,0],[10,0],[10,0]]
+    const partidaStrike=[[10,0],[10,0],[10,0],[10,0],[10,0],[10,0],[10,0],[10,0],[10,0],[10,10,10]]
     // Act
     const result = bowlingGame9.sumar(partidaStrike);
 

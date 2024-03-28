@@ -1,60 +1,112 @@
 class bowlingGame {
 
   constructor() {
-      this.rondas = 0
-      this.partidas = []
+    this.rondas = 0
+    this.partidas = []
   }
   bowling() {
+    let primerTurno = 0
+    let segundoTurno = 0
+    let tercerTurno = 0
 
-      while (this.rondas < 10) {
-          let primerTurno = Math.floor(Math.random() * (11 - 0) + 0)
-          let segundoTurno = Math.floor(Math.random() * ((11 - primerTurno) - 0) + 0)
-          const result = [primerTurno, segundoTurno]
-          this.partidas.push(result)
-          this.rondas++
-      }
+    while (this.rondas < 9) {
 
-      this.sumar(this.partidas)
+      primerTurno = Math.floor(Math.random() * (11 - 0) + 0)
+      segundoTurno = Math.floor(Math.random() * ((11 - primerTurno) - 0) + 0)
+      const result = [primerTurno, segundoTurno]
+      this.partidas.push(result)
+      this.rondas++
+    }
 
-      return this.partidas
+    //ultima partida
+    primerTurno = Math.floor(Math.random() * (11 - 0) + 0)
+
+    if (primerTurno == 10) {
+      segundoTurno = Math.floor(Math.random() * (11 - 0) + 0)
+
+    } else {
+      segundoTurno = Math.floor(Math.random() * ((11 - primerTurno) - 0) + 0)
+    }
+
+    if (segundoTurno === 10 || primerTurno + segundoTurno === 10) {
+      tercerTurno = Math.floor(Math.random() * (11 - 0) + 0)
+    }
+
+    const result = [primerTurno, segundoTurno, tercerTurno]
+    this.partidas.push(result)
+    this.sumar(this.partidas)
+
+    return this.partidas
 
   }
 
   sumar(partidas) {
-      let suma = 0
-      let turno = []
-      console.log(suma)
-      for (let step = 0; step < 10; step++) {
-      
-          turno = partidas[step]
+    let suma = 0
+    let turno = []
+    console.log(suma)
+    for (let step = 0; step < 8; step++) {
 
-          if (turno[0] === 10) {
-            console.log("estoy en strike")
+      turno = partidas[step]
 
-            let a = partidas[(step + 1) % partidas.length]
-            let b = a[0] + a[1]
-            let c = partidas[(step + 2) % partidas.length]
-            let d = c[0] + c[1]
-            console.log("--->"+(step + 2) % partidas.length)
-            suma +=b
-            suma+=d
-            console.log("--->"+ b)
-           // suma +=d
+      if (turno[0] === 10) {
+        console.log("estoy en strike")
 
-          }else if (turno[0] + turno[1] === 10){
-            console.log("estoy en scope")
-              let a = partidas[(step + 1) % partidas.length]
-              let b = a[0] + a[1]
-          
-              suma +=b
-            
-          } 
+        let a = partidas[(step + 1) ]
+        let b = a[0] + a[1]
+        let c = partidas[(step + 2)]
+        let d = c[0] + c[1]
+        console.log("--->" + (step + 2) % partidas.length)
+        suma += b+d
 
-          suma += turno[0] + turno[1]
-          console.log(suma)
+        console.log("--->" + b)
+        // suma +=d
+
+      } else if (turno[0] + turno[1] === 10) {
+        console.log("estoy en scope")
+        let a = partidas[(step + 1) % partidas.length]
+        let b = a[0] + a[1]
+
+        suma += b
+
       }
 
-     return suma
+      suma += turno[0] + turno[1]
+      console.log(suma)
+    }
+
+    let turno9=partidas[8]
+    let turno10=partidas[9]
+
+// turno 9
+    if (turno9[0] === 10) {
+      console.log("estoy en strike ronda 9")
+
+      let a = turno10[0]
+      let b = turno10[1]
+      let c = turno10[2]
+      
+      suma += turno9[0] + turno9[1]
+      suma += a+b+c
+      
+
+    } else if (turno9[0] + turno9[1] === 10) {
+      console.log("estoy en scope ronda 9")
+   
+      let a = turno10[0]
+      let b = turno10[1]
+
+      suma += turno9[0] + turno9[1]
+      suma += a +b
+    
+    }else{
+      suma += turno9[0] + turno9[1]
+    }
+    
+    //turno10
+
+      suma += turno10[0] + turno10[1]+turno[2]
+    
+    return suma
   }
 
 

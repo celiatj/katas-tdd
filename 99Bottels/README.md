@@ -1,3 +1,5 @@
+La kata 99bottels sigue el flujo de trabajo guiado por el libro 99 Bottles of OOP A Practical Guide to Object-Oriented Design (JavaScript Edition) by Sandi Metz, Katrina Owen, TJ Stankus.
+
 # Javascript kata template
 
 Esta plantilla utiliza [Jasmine](https://jasmine.github.io/) para ejecutar los tests. Para poder ejecutar los tests, necesitarás instalar `NodeJS` y `npm`.
