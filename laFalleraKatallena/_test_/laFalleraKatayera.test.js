@@ -55,21 +55,21 @@ describe("LaFalleraKatayera", () => {
     expect(deck.includes(result)).toBe(expectValue);
 
   });
-  
+
   it("Should have seven cards when the game starts", () => {
     // Arranges
     const expectValue = 7
 
     // Act
     const result = laFalleraKatayera.startGame().length
-  
+
     // Assert
     expect(result).toBe(expectValue)
   })
 
   it("put ingredients in a board", () => {
     // Arranges
-    const hand= [
+    laFalleraKatayera.hand = [
       'judías verdes',
       'Pollo',
       'judías verdes',
@@ -79,36 +79,47 @@ describe("LaFalleraKatayera", () => {
       'la dame de elx'
     ]
     const expectValue = ['judías verdes',
-    'Pollo']
+      'Pollo']
 
     // Act
-    laFalleraKatayera.downIngredientes(hand)
+    laFalleraKatayera.downIngredientes()
     const result = laFalleraKatayera.myBoard
-  
+
     // Assert
     expect(result).toStrictEqual(expectValue)
   })
 
-  it("put ingredients in a board", () => {
+  it("give me a card and has one more in the hand", () => {
     // Arranges
-    const hand= [
-      'judías verdes',
-      'conejo',
-      'judías verdes',
-      'monleons',
-      'Jaume I',
-      'la eterna Alcaldesa',
-      'la dame de elx'
-    ]
-    const expectValue = ['judías verdes',
-    'Pollo','conejo']
+    const expectValue = laFalleraKatayera.hand.length
 
     // Act
-    laFalleraKatayera.downIngredientes(hand)
-    const result = laFalleraKatayera.myBoard
-  
+    laFalleraKatayera.giveMeAcardInTheHand()
+    const result = laFalleraKatayera.hand.length
+
     // Assert
-    expect(result).toStrictEqual(expectValue)
+    expect(result).toStrictEqual(expectValue + 1)
   })
+
+  it("when you have five ingredients, you win!", () => {
+    // Arranges
+    laFalleraKatayera.hand = [
+      'judías verdes',
+      'Pollo',
+      'alcachofas',
+      'conejo',
+      "tomate"
+    ]
+    
+
+    // Act
+    const result = laFalleraKatayera.downIngredientes()
+    const expectValue = 'YOU WIN'
+
+    // Assert
+    expect(result).toBe(expectValue)
+  })
+
+
 
 });
