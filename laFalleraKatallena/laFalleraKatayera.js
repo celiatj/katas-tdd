@@ -23,14 +23,13 @@ class LaFalleraKatayera {
   }
 
   downIngredientes() {
-
-    console.log(this.hand + 'la mano antes de bajar')
     let onlyIngredients = this.filterIngredientes(this.hand)
+    console.log('onlyIngredientes' + onlyIngredients)
+    console.log('my Hand'+ this.hand)
 
     if (this.myBoard.length === 0) {
       this.myBoard.push(...onlyIngredients);
       this.hand = this.filterMoster()
-      console.log(this.hand + 'la mano despues de bajar')
     } else {
       onlyIngredients.forEach(card => {
         this.myBoard.forEach(ingredient => {
@@ -40,10 +39,11 @@ class LaFalleraKatayera {
         });
       });
       this.myBoard.push(...onlyIngredients)
+
       this.hand = this.filterMoster()
-// modificar filterMoster para que se elimine de la mano y no con el filtermoster
+      // modificar filterMoster para que se elimine de la mano y no con el filtermoster
     }
-    if(youwin()){ return "YOU WIN"}
+    if (this.youwin()) { return "YOU WIN" }
   }
 
   filterIngredientes() {
@@ -67,13 +67,39 @@ class LaFalleraKatayera {
       if (!finalMoster.includes(monster)) {
         finalMoster.push(monster)
       }
+      //revisar esto
+      let a = this.encontrarDuplicados(this.hand)
+      finalMoster.push(a)
     })
+    console.log("MI MANO:"+finalMoster)
     return finalMoster
   }
 
   giveMeAcardInTheHand() {
     this.hand.push(this.dealCard())
   }
+
+  youwin() {
+    if (this.myBoard.length === 5) return true
+    return false
+  }
+// no duplica bien
+  encontrarDuplicados(array){
+    let contador = {};
+    let duplicados = [];
+
+    for (let i = 0; i < array.length; i++) {
+        let elemento = array[i];
+        contador[elemento] = (contador[elemento] || 0) + 1;
+        if (contador[elemento] === 2) {
+            duplicados.push(elemento);
+        }
+    }
+
+    return duplicados;
+}
+
+//falta mucho refactor!!!!
 }
 
 module.exports = LaFalleraKatayera;

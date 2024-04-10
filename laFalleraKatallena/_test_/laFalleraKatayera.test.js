@@ -111,7 +111,6 @@ describe("LaFalleraKatayera", () => {
       "tomate"
     ]
     
-
     // Act
     const result = laFalleraKatayera.downIngredientes()
     const expectValue = 'YOU WIN'
