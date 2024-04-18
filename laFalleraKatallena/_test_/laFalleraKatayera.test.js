@@ -119,6 +119,6 @@ describe("LaFalleraKatayera", () => {
     expect(result).toBe(expectValue)
   })
 
-
+//falta test que compruebe la mano , que cuando nos bajamos ingredientes se quede la mano que toca 
 
 });
